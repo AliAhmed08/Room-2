@@ -13,10 +13,16 @@ const fetchAsteroid = async function (){
 }
 
 function getNearObjects(data) {
+    const maxDiameters = [];
     for (const date in data.near_earth_objects) {
         const asteroids = data.near_earth_objects[date];
-        console.log(asteroids);
+        // console.log(asteroids);
+        for (let asteroid of asteroids) {
+            // console.log(asteroid);
+            maxDiameters.push(asteroid.estimated_diameter.kilometers.estimated_diameter_max);
+        }
     }
+    console.log(maxDiameters);
 }
 
 fetchAsteroid().then(data => getNearObjects(data));
